@@ -1,0 +1,47 @@
+/* header */
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Akaya Telivigala', cursive;
+}
+
+header {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #DAD299;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #B0DAB9, #DAD299);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/* main */
+
+
+.container {
+    margin: auto;
+    margin-top: 60px;;
+    width: 500px;
+    background-color: whitesmoke;
+    height: 500px;
+    display: flex;
+    /* justify-content: stretch; */
+    flex-wrap: wrap;
+    /* align-content: flex-start; */
+    padding: 0;
+}
+
+.container div {
+    margin: 0;
+    padding: 0;
+}
+
+.carreau {
+    border: solid 1px black;
+}
