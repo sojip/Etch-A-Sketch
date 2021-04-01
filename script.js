@@ -1,49 +1,54 @@
-let container = document.querySelector(".container");
-let width = container.offsetWidth - 2;
-let height = container.offsetHeight - 2;
-createGrid(16);
+//initial grid
+let container = document.querySelector("#container");
+let createButton = document.querySelector('#createGrid');
+let resetButton = document.querySelector('#resetGrid');
 
-let divs = document.querySelectorAll('.square');
-
-window.addEventListener('resize', () => {
-    changeSquareDimension(16)
-});
-
-divs.forEach( div => {
-    div.addEventListener("mouseover", () => {
-        div.style.background = "black";
-    })
-} )
-
-let button = document.querySelector('#createGrid');
-button.addEventListener('click', () => {
-    let gridSize = document.getElementById("gridSize").value;
-    createGrid(gridSize);
-    changeSquareDimension(gridSize);
+window.addEventListener("load", () => {
+    container.style.gridTemplateColumns = `repeat(16, 1fr)`;
+    container.style.gridTemplaterows = `repeat(16, 1fr)`;
+    createGrid(16);
 })
 
 
-// function changeSquareDimension(gridNumber) {
+createButton.addEventListener('click', () => {
+    let gridSize = document.getElementById("gridSize").value;
+    if (gridSize >= 0 && gridSize < 101){
+        deleteGrid()
+        container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`
+        container.style.gridTemplaterows = `repeat(${gridSize}, 1fr)`
+        createGrid(gridSize);
+    }
+    else {
+        alert ("Change the size")
+    }
     
-//     width = container.offsetWidth;
-//     height = container.offsetHeight;
-//     divs.forEach( div => {
-//         div.style.minWidth = String(((width)/gridNumber)-4) + "px";
-//         div.style.minHeight = String(((height)/gridNumber)-4) + "px";
-//     } )
-// }
+})
+
+resetButton.addEventListener('click', () => {
+    let squares = document.querySelectorAll('.square');
+    squares.forEach( square => {
+       square.style.background = "white"} )
+})
+
+
 
 function createGrid(gridNumber) {
-    width = container.offsetWidth;
-    console.log(width)
-    height = container.offsetHeight;
     for(let i=0; i < (gridNumber*gridNumber); i++) {
-        let div = document.createElement("div");
-        div.classList.add("square");
-        // div.style.minWidth = String(((width)/gridNumber)) + "px";
-        // console.log(div.style.minWidth)
-        // div.style.minHeight = String(((height)/gridNumber)) + "px";
-        container.appendChild(div);
-        // console.log(div.offsetWidth)
+        let square = document.createElement("div");
+        square.classList.add("square");
+        container.appendChild(square);
     }
+
+    let squares = document.querySelectorAll('.square');
+    squares.forEach( square => {
+        square.addEventListener("mouseover", () => {
+            square.style.background = "black";
+        })
+    } )
+}
+
+function deleteGrid() {   
+    squares = document.querySelectorAll('.square');
+    squares.forEach( square => {
+        container.removeChild(square) })
 }
